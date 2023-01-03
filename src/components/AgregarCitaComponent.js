@@ -7,7 +7,10 @@ import {Link, useNavigate, useParams } from 'react-router-dom';
 const AgregarCitaComponent = () => {
     const [idMedico, setIdMedico] = useState('')
     const [idPaciente, setIdPaciente] = useState('')
-  const history = useNavigate();
+    const [horaInicio, setHoraInicio] = useState('')
+  const [horaFin, setHoraFin] = useState('')
+    
+    const history = useNavigate();
   const {citaId} = useParams();
 
   const saveOrUpdateCitas = (e) => {
@@ -15,10 +18,10 @@ const AgregarCitaComponent = () => {
 
       const CITAS_BASE_REST_API_URL = 'http://localhost:8080/api/v1/citas';
 
-      const cita = {idMedico,idPaciente}
+      const cita = {idMedico,idPaciente,horaInicio,horaFin}
 
   if(citaId){
-      axios.put(`${CITAS_BASE_REST_API_URL}/actualizarCita/${idMedico}/${idPaciente}`, cita)
+      axios.put(`${CITAS_BASE_REST_API_URL}/actualizarCita/${idMedico}/${idPaciente}/${horaInicio}/${horaFin}`, cita)
       .then((response) => {
           history('/listar-citas')
       }).catch(error => {
@@ -26,7 +29,7 @@ const AgregarCitaComponent = () => {
       })
 
   }else{
-      axios.post(`${CITAS_BASE_REST_API_URL}/AgregarCita/${idMedico}/${idPaciente}`,)
+      axios.post(`${CITAS_BASE_REST_API_URL}/AgregarCita/${idMedico}/${idPaciente}/${horaInicio}/${horaFin}`,)
       .then((response) =>{
           console.log(response.data)
 
@@ -80,6 +83,32 @@ return (
                   className="form-control"
                   value={idPaciente}
                   onChange={(e) => setIdPaciente(e.target.value)}
+                >
+                </input>
+              </div>
+
+               <div className="form-group mb-2">
+                <label className="form-label"> Hora Inicio :</label>
+                <input
+                  type="text"
+                  placeholder="Ingrese la hora de inicio"
+                  name="HoraInicio"
+                  className="form-control"
+                  value={horaInicio}
+                  onChange={(e) => setHoraInicio(e.target.value)}
+                >
+                </input>
+              </div>
+
+              <div className="form-group mb-2">
+                <label className="form-label"> Hora Fin :</label>
+                <input
+                  type="text"
+                  placeholder="Ingrese la hora fin"
+                  name="horaFinal"
+                  className="form-control"
+                  value={horaFin}
+                  onChange={(e) => setHoraFin(e.target.value)}
                 >
                 </input>
               </div>

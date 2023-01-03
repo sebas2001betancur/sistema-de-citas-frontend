@@ -13,13 +13,15 @@ const AgregarMedico = () => {
   const [especialidad, setEspecialidad] = useState('')
   const [horaInicio, setHoraInicio] = useState('')
   const [horaFin, setHoraFin] = useState('')
+  const [hospital, setHospital] = useState('')
+
   const history = useNavigate();
   const {id} = useParams();
 
   const saveOrUpdateMedico = (e) => {
       e.preventDefault();
 
-      const medico = {nombre,identificacion,tipoIdentificacion,numTarjetaPro,añosExperiencia,especialidad,horaInicio,horaFin}
+      const medico = {nombre,identificacion,tipoIdentificacion,numTarjetaPro,añosExperiencia,especialidad,horaInicio,horaFin,hospital}
 
       if(id){
           MedicoService.actualizarMedico(id, medico).then((response) => {
@@ -53,6 +55,7 @@ const AgregarMedico = () => {
           setEspecialidad(response.data.especialidad)
           setHoraInicio(response.data.horaInicio)
           setHoraFin(response.data.horaFin)
+          setHospital(response.data.hospital)
       }).catch(error => {
           console.log(error)
       })
@@ -180,6 +183,19 @@ const AgregarMedico = () => {
                                         className = "form-control"
                                         value = {horaFin}
                                         onChange = {(e) => setHoraFin(e.target.value)}
+                                    >
+                                    </input>
+                                </div>
+
+                                <div className = "form-group mb-2">
+                                    <label className = "form-label"> Hospital :</label>
+                                    <input
+                                        type = "text"
+                                        placeholder = "Ingrese el hospital"
+                                        name = "hospital"
+                                        className = "form-control"
+                                        value = {hospital}
+                                        onChange = {(e) => setHospital(e.target.value)}
                                     >
                                     </input>
                                 </div>

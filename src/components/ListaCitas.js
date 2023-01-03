@@ -41,6 +41,8 @@ return (
                   <th> Nombre De Paciente </th>
                   <th> Identificacion Del Paciente </th>
                   <th> EPS </th>
+                  <th> Hora de Inicio </th>
+                  <th> Hora de Finalizacion </th>
                   <th> Acciones </th>
                 </tr>
               </thead>
@@ -54,6 +56,8 @@ return (
                               <td> {cita.nombrePaciente} </td>
                               <td>{cita.identificacionPaciente}</td>
                               <td>{cita.epsCita}</td>
+                              <td>{cita.horaInicio}</td>
+                              <td>{cita.horaFin}</td>
                               <td>
                               <div className='btn-group'>
                                   <Link className="btn btn-info" to={`/edit-cita/${cita.idCita}`} >Update</Link>

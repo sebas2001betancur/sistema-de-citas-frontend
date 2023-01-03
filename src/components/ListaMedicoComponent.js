@@ -45,6 +45,7 @@ const ListMedicoComponent = () => {
                     <th> Especialidad </th>
                     <th> Hora De Inicio </th>
                     <th> Hora De Final </th>
+                    <th> Hospital </th>
                     <th> Acciones </th>
                     </tr>
                 </thead>
@@ -62,6 +63,7 @@ const ListMedicoComponent = () => {
                                 <td>{medico.especialidad}</td>
                                 <td>{medico.horaInicio}</td>
                                 <td>{medico.horaFin}</td>
+                                <td>{medico.hospital}</td>
                                 <td>
                                 <div className='btn-group'>
                                     <Link className="btn btn-info" to={`/edit-medico/${medico.idMedico}`} >Update</Link>
